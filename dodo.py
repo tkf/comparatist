@@ -16,9 +16,9 @@ def task_bench():
 
     for lang, args_list in run_data:
         for args in args_list:
-            target = datapath('python', *args)
+            target = datapath(lang, *args)
             yield {
-                'name': '+'.join(args),
+                'name': target,
                 'actions': [
                     'mkdir -p $(dirname %(targets)s)',
                     lang + '/cli run ' + ' '.join(args) + ' > %(targets)s',
