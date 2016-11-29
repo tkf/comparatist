@@ -6,7 +6,7 @@ function simulate!(x, m)
     for t = 2:steps, j = 1:dim
         y = 0.0
         for i = 1:dim
-            y += m[i, j] * x[i, t]
+            y += m[i, j] * x[i, t-1]
         end
         x[j, t] = tanh(y)
     end
