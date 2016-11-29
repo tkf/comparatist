@@ -2,7 +2,7 @@ module Helper
 
 params = Dict(
     :default =>
-    Dict(:x0 => 0.1, :dim => 1000, :steps => 10, :gain => 5.0, :seed => 1),
+    Dict(:x0 => 0.1, :dim => 1000, :steps => 100, :gain => 5.0, :seed => 1),
 )
 
 

@@ -2,7 +2,7 @@ import numpy
 
 
 params = dict(
-    default=dict(x0=0.1, dim=1000, steps=10, gain=5.0, seed=1),
+    default=dict(x0=0.1, dim=1000, steps=100, gain=5.0, seed=1),
 )
 
 

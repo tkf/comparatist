@@ -26,7 +26,7 @@ end
 
 function cli_run(module_names, run_names, repeat)
     benchmark = run_funcs(module_names, run_names, repeat)
-    JSON.print(Dict(:benchmark => benchmark))
+    JSON.print(Dict(:benchmark => benchmark, :lang => "julia"))
     println()
 end
 

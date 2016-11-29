@@ -26,7 +26,7 @@ def cli_run(output, **kwds):
     """
     benchmark = list(run_funcs(**kwds))
     try:
-        json.dump(dict(benchmark=benchmark), output)
+        json.dump(dict(benchmark=benchmark, lang='python'), output)
     finally:
         output.close()
 
