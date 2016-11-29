@@ -6,15 +6,18 @@ import itertools
 
 def run_funcs(module_names, run_names, repeat):
     from .utils.importer import import_object
-    from .utils.timing import gettimings
+    from .utils.timing import timed
 
     for i in range(repeat):
         for m, r in itertools.product(module_names, run_names):
             func = import_object('.' + m, __name__).prepare(r)
-            pre = gettimings()
-            func()
-            post = gettimings()
-            yield dict(module=m, run=r, pre=pre, post=post)
+            with timed() as data:
+                func()
+            yield dict({
+                'try': i,
+                'module': m,
+                'run': r,
+            }, **data)
 
 
 def cli_run(output, **kwds):

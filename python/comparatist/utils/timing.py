@@ -1,3 +1,4 @@
+from contextlib import contextmanager
 import datetime
 try:
     import resource
@@ -42,3 +43,18 @@ def gettimings():
         unixtime=unixtimenow(),
         rusage=getrusage_self(),
     )
+
+
+@contextmanager
+def timed():
+    data = {}
+    pre = getrusage_self()
+    yield data
+    post = getrusage_self()
+
+    def diff(name):
+        return post[name] - pre[name]
+
+    data["elapsed_system"] = stime = diff("ru_stime")
+    data["elapsed_user"] = utime = diff("ru_utime")
+    data["elapsed"] = stime + utime
