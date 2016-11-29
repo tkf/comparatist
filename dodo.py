@@ -3,6 +3,7 @@ import os
 run_data = [
     ('python', [
         ('rnn.vec', 'default'),
+        ('rnn.clib', 'default'),
     ]),
     ('julia', [
         ('rnn.loop', 'default'),
