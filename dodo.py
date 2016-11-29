@@ -6,6 +6,7 @@ run_data = [
     ]),
     ('julia', [
         ('rnn.loop', 'default'),
+        ('rnn.vec', 'default'),
     ]),
 ]
 

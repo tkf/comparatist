@@ -1,4 +1,4 @@
 #!/bin/bash
 here="$(dirname "${BASH_SOURCE[0]}")"
 export JULIA_LOAD_PATH="${here}:$JULIA_LOAD_PATH"
-exec julia -e "using Comparatist; Comparatist.CLI.main()" -- "$@"
+exec julia -e "using Comparatist; Comparatist.CLI.main()" --check-bounds=no -- "$@"

@@ -6,6 +6,9 @@ include("rnn/_helper.jl")
 module loop
 include("rnn/loop.jl")
 end
+module vec
+include("rnn/vec.jl")
+end
 end
 
 
