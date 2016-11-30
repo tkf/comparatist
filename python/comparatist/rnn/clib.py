@@ -43,4 +43,9 @@ def prepare(name):
     steps, dim = kwds["x"].shape
     sim = Simulator(x0=kwds["x"][0], dim=dim, steps=steps)
     sim.m[:] = kwds["m"]
-    return sim.run
+    kwds["x"] = sim.x
+
+    def run():
+        sim.run()
+        return kwds
+    return run

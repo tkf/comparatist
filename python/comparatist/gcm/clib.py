@@ -21,7 +21,7 @@ class Simulator:
 
     _lib = load_library('libcomparatist_gcm')
 
-    def __init__(self, x0=0.1, dim=1000, steps=10, map='logistic'):
+    def __init__(self, x0, r, epsilon, dim, steps, map='logistic'):
         self.x = numpy.ones((steps, dim), dtype=float)
         self.x[0] = x0
 
@@ -31,6 +31,8 @@ class Simulator:
         self.struct = GloballyCoupledMap()
         self.struct.steps = steps
         self.struct.dim = dim
+        self.struct.r = r
+        self.struct.epsilon = epsilon
         self.struct.x = self.x.ctypes.data_as(double1d)
 
     def run(self):
@@ -41,5 +43,11 @@ def prepare(name):
     from ._helper import init, params
     kwds = init(**params[name])
     steps, dim = kwds["x"].shape
-    sim = Simulator(x0=kwds["x"][0], dim=dim, steps=steps)
-    return sim.run
+    sim = Simulator(x0=kwds["x"][0], dim=dim, steps=steps,
+                    r=kwds['r'], epsilon=kwds['epsilon'])
+    kwds["x"] = sim.x
+
+    def run():
+        sim.run()
+        return kwds
+    return run
