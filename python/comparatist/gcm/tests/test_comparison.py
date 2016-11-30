@@ -4,8 +4,9 @@ import pytest
 from .. import clib
 from .. import lesscopy
 from .. import vec
+from .. import jlloop
 
-modules = [vec, clib, lesscopy]
+modules = [vec, clib, lesscopy, jlloop]
 tmax = 20
 
 
