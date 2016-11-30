@@ -11,6 +11,8 @@ run_data = [
     ('julia', [
         ('rnn.loop', 'default'),
         ('rnn.vec', 'default'),
+        ('gcm.loop', 'default'),
+        ('gcm.vec', 'default'),
     ]),
 ]
 

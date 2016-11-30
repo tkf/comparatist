@@ -11,6 +11,16 @@ include("rnn/vec.jl")
 end
 end
 
+module gcm
+include("gcm/_helper.jl")
+module loop
+include("gcm/loop.jl")
+end
+module vec
+include("gcm/vec.jl")
+end
+end
+
 
 this_module = current_module()
 
