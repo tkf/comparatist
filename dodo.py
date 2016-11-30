@@ -4,6 +4,8 @@ run_data = [
     ('python', [
         ('rnn.vec', 'default'),
         ('rnn.clib', 'default'),
+        ('gcm.vec', 'default'),
+        ('gcm.clib', 'default'),
     ]),
     ('julia', [
         ('rnn.loop', 'default'),
