@@ -5,8 +5,9 @@ from .. import clib
 from .. import lesscopy
 from .. import vec
 from .. import jlloop
+from .. import jlvec
 
-modules = [vec, clib, lesscopy, jlloop]
+modules = [vec, clib, lesscopy, jlloop, jlvec]
 tmax = 20
 
 
