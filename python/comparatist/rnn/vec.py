@@ -1,6 +1,6 @@
 import numpy
 
-from ._base import make_prepare
+from ._helper import make_prepare
 
 
 def simulate(x, m, y):

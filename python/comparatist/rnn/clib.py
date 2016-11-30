@@ -38,7 +38,7 @@ class Simulator:
 
 
 def prepare(name):
-    from ._base import init, params
+    from ._helper import init, params
     kwds = init(**params[name])
     steps, dim = kwds["x"].shape
     sim = Simulator(x0=kwds["x"][0], dim=dim, steps=steps)
