@@ -14,8 +14,11 @@ function simulate!(x, m, y)
 end
 
 
-function prepare(name)
+function prepare(name; m=nothing)
     res = init(name)
+    if m != nothing
+        res[:m] = m
+    end
     function run()
         simulate!(res[:x], res[:m], res[:y])
         res

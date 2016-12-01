@@ -3,8 +3,10 @@ import pytest
 
 from .. import clib
 from .. import vec
+from .. import jlloop
+from .. import jlvec
 
-modules = [vec, clib]
+modules = [vec, clib, jlloop, jlvec]
 tmax = 20
 
 

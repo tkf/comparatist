@@ -23,19 +23,23 @@ def getjulia():
     return JL
 
 
-def make_prepare(module):
-    def prepare(name):
-        jl = getjulia()
-        jlrun = jl.eval("""
-        import {module}
-        {module}.prepare(:{name})
-        """.format(module=module, name=name))
+def jlprepare(module, name, **kwds):
+    jl = getjulia()
+    jlrun = jl.eval("""
+    import {module}
+    function(; opts...)
+        {module}.prepare(:{name}; opts...)
+    end
+    """.format(module=module, name=name))(**kwds)
 
-        def run():
-            kwds = jlrun()
-            for k, v in kwds.items():
-                if isinstance(v, numpy.ndarray):
-                    kwds[k] = v.T
-            return kwds
-        return run
-    return prepare
+    def run():
+        kwds = jlrun()
+        for k, v in kwds.items():
+            if isinstance(v, numpy.ndarray):
+                kwds[k] = v.T
+        return kwds
+    return run
+
+
+def make_prepare(module, **kwds):
+    return lambda name: jlprepare(module, name, **kwds)
