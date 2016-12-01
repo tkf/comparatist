@@ -1,5 +1,10 @@
 import os
 
+os.environ.update(
+    OPENBLAS_NUM_THREADS='1',
+    MKL_NUM_THREADS='1',
+)
+
 run_data = [
     ('python', [
         ('rnn.vec', 'default'),
