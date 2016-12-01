@@ -68,6 +68,24 @@ improvement, though.
 ![Elapsed time (wall time) of each implementation, using Julia build with MKL.](https://github.com/tkf/comparatist/raw/data/elapsed-julia-mkl.png)
 
 
+## How to run
+
+Benchmarks can be run via [doit] command line tool:
+
+```sh
+doit bench
+```
+
+[doit]: http://pydoit.org
+
+To plot the result, run the following code in Jupyter notebook/IPython:
+
+```python
+from comparatist import viz
+viz.elapsed("data/*/*/*")
+```
+
+
 ## License
 
 MIT (see LICENSE file)
