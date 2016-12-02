@@ -19,6 +19,7 @@ run_data = [
         ('rnn.vec', 'default'),
         ('gcm.loop', 'default'),
         ('gcm.vec', 'default'),
+        ('oup.loop', 'default'),
     ]),
 ]
 
