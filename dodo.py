@@ -12,6 +12,7 @@ run_data = [
         ('gcm.vec', 'default'),
         ('gcm.lesscopy', 'default'),
         ('gcm.clib', 'default'),
+        ('oup.clib', 'default'),
     ]),
     ('julia', [
         ('rnn.loop', 'default'),
