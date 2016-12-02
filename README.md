@@ -25,6 +25,11 @@ time-complexity estimate, T is time steps and N is number of units
   This is a typical dynamical system with mean-field type communication.
   Inner most loop have slightly complex (but simd'able) arithmetics.
 
+- *Ornstein-Uhlenbeck_process* [time = O(T)] --
+  The bottleneck is function call of random number generation.
+  This is a benchmark for the overhead of calling functions from external
+  library.
+
 - (maybe more to come...)
 
 
@@ -51,17 +56,20 @@ Julia implementations are always the best.  C implementations are also
 as good as Julia implementations.  Actually, several compile flags
 (see lib/Makefile) have to be added in order to make C implementations
 comparable to Julia's.  The fact that plain -O3 option couldn't beat
-Julia was surprising.  I'm not sure what else to do for the C
-implementations to beat Julia; contributions are welcome :)
+Julia was surprising.  I tried also with `icc -fast` instead of `gcc`,
+but the C implementations still are not faster than Julia.  I'm not
+sure what else to do for the C implementations; contributions are
+welcome :)
 
-(TODO: try icc)
+### Julia build with MKL
 
-Vector-based implantation in Python for the RNN (`rnn [python] vec`)
-beats Julia, but this is probably to be due to the MKL dot-product
-function called via numpy.  Indeed, when I use
-[Julia build with MKL][conda-julia], Julia implementations are closer
-to the best result of Python implementation (see blow); not a huge
-improvement, though.
+When [Julia build with MKL][conda-julia], it even runs faster.
+Interestingly, the increase also occurs for loop-based implementation
+(which does not use MKL routines explicitly), although the improvement
+is not huge.  To see the advantages of MKL, more involving
+computations such as matrix-matrix multiplication and eigenvalue
+calculation have to be used.  Such computations are not part of the
+simulations here.
 
 [conda-julia]: https://github.com/tkf/conda-julia/
 
