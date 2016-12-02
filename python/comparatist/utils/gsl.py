@@ -37,7 +37,7 @@ class _GSLFuncLoader(object):
         return func
 
     def _load(self, name, argtypes=None, restype=None):
-        if isinstance(name, basestring):
+        if isinstance(name, str):
             return self._load_1(name, argtypes, restype)
         else:
             try:
@@ -90,6 +90,7 @@ def _get_gsl_rng_type_p_dict():
         if a.value is None:
             break
         name = c_char_p.from_address(a.value).value
+        name = name.decode()  # for Python 3 (bytes to str)
         dct[name] = ctypes.cast(a, _c_gsl_rng_type_p)
         t += dt
     return dct
@@ -174,7 +175,7 @@ def plot_gaussian(method='', sigma=1, show=True):
     import pylab
     rng = gsl_rng()
     pylab.hist(
-        [rng.ran_gaussian(method=method, sigma=sigma) for i in xrange(10000)],
+        [rng.ran_gaussian(method=method, sigma=sigma) for i in range(10000)],
         bins=100, normed=True)
     if show:
         pylab.show()
@@ -184,7 +185,7 @@ def print_error_codes():
     for i in range(1000):
         error_message = gsl_strerror(i)
         if error_message != 'unknown error code':
-            print '% 4d: "%s"' % (i, error_message)
+            print('% 4d: "%s"' % (i, error_message))
 
 
 def main():
@@ -195,19 +196,19 @@ def main():
         plot_gaussian=plot_gaussian,
         )
     if len(sys.argv) == 0:
-        print 'Please specify command or code to execute\n'
+        print('Please specify command or code to execute\n')
         for name in sorted(cmd2func):
-            print name
+            print(name)
     else:
         (cmd,) = sys.argv[1:]
         if cmd in cmd2func:
-            print "Calling function: %s" % cmd
+            print("Calling function: %s" % cmd)
             cmd2func[cmd]()
         else:
-            print "Executing code: %s" % cmd
+            print("Executing code: %s" % cmd)
             ret = eval(cmd, globals())
             if ret is not None:
-                print "Returned %r" % ret
+                print("Returned %r" % ret)
 
 
 if __name__ == '__main__':
