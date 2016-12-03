@@ -25,7 +25,7 @@ time-complexity estimate, T is time steps and N is number of units
   This is a typical dynamical system with mean-field type communication.
   Inner most loop have slightly complex (but simd'able) arithmetics.
 
-- *Ornstein-Uhlenbeck_process* [time = O(T)] --
+- *Ornstein-Uhlenbeck process* [time = O(T)] --
   The bottleneck is function call of random number generation.
   This is a benchmark for the overhead of calling functions from external
   library.
