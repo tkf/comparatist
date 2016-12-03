@@ -1,5 +1,6 @@
 from contextlib import contextmanager
 import datetime
+import time
 try:
     import resource
 except ImportError:
@@ -49,7 +50,9 @@ def gettimings():
 def timed():
     data = {}
     pre = getrusage_self()
+    pre_clock = time.clock_gettime(time.CLOCK_MONOTONIC)
     yield data
+    post_clock = time.clock_gettime(time.CLOCK_MONOTONIC)
     post = getrusage_self()
 
     def diff(name):
@@ -57,4 +60,5 @@ def timed():
 
     data["elapsed_system"] = stime = diff("ru_stime")
     data["elapsed_user"] = utime = diff("ru_utime")
-    data["elapsed"] = stime + utime
+    data["elapsed_ru"] = stime + utime
+    data["elapsed"] = post_clock - pre_clock
